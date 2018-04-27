@@ -3,8 +3,8 @@ print("init")
 from PIL import Image
 import random
 
-HEIGHT = 1920
-WIDTH = 1080
+HEIGHT = 1080
+WIDTH = 1920
 
 def main():
 
@@ -23,8 +23,9 @@ def main():
             pix[x,y] = (matrix[x][y][0],matrix[x][y][1],matrix[x][y][2])
 
     # print(matrix)
-
-    im.convert('RGB').save("new.jpg")
+    print("about to save image")
+    im.convert('RGB').save("new.png")
+    print("image saved")
 
 
 
