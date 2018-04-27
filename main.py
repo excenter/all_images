@@ -1,22 +1,34 @@
 # hello world
 print("init")
 from PIL import Image
+import random
 
-HEIGHT = 100
-WIDTH = 100
+HEIGHT = 1920
+WIDTH = 1080
 
-im = Image.new("RGB",(HEIGHT,WIDTH),color=0)
-pix = im.load()
+def main():
 
 
-matrix = [[[0 for rgb in range(3)] for y in range(WIDTH)] for x in range(HEIGHT)]
+    im = Image.new("HSV",(WIDTH,HEIGHT),color=0)
+    pix = im.load()
 
-for x in range(HEIGHT):
-    for y in range(WIDTH):
-        for rgb in range(3):
-            matrix[x][y][rgb] = x * y
-        pix[x,y] = (matrix[x][y][0],matrix[x][y][1],matrix[x][y][2])
 
-print(matrix)
+    matrix = [[[0 for rgb in range(3)] for y in range(HEIGHT)] for x in range(WIDTH)]
 
-im.save("new.png")
+    for x in range(WIDTH):
+        for y in range(HEIGHT):
+            for rgb in range(3):
+                matrix[x][y][rgb] = round5(random.random()*255)
+            # pix[x,y] = (matrix[x][y][0],matrix[x][y][1],matrix[x][y][2])
+            pix[x,y] = (matrix[x][y][0],matrix[x][y][1],matrix[x][y][2])
+
+    # print(matrix)
+
+    im.convert('RGB').save("new.jpg")
+
+
+
+def round5(x, base=5):
+    return int(base * round(float(x)/base))
+
+main()
